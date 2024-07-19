@@ -1,2 +1,0 @@
-# sii-scolairexpert-api
-
