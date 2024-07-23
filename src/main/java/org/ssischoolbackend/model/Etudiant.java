@@ -20,11 +20,11 @@ public class Etudiant {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String address;
+    private String adress;
     private String zipCode;
     private String gender;
     private String level;
-    private String group;
+    private String classe;
 
     public static Etudiant mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Etudiant etudiant = new Etudiant();
@@ -33,11 +33,11 @@ public class Etudiant {
         etudiant.setLastName(resultSet.getString("last_name"));
         etudiant.setEmail(resultSet.getString("email"));
         etudiant.setPhoneNumber(resultSet.getString("phone_number"));
-        etudiant.setAddress(resultSet.getString("address"));
+        etudiant.setAdress(resultSet.getString("address"));
         etudiant.setZipCode(resultSet.getString("zip_code"));
         etudiant.setGender(resultSet.getString("gender"));
         etudiant.setLevel(resultSet.getString("level"));
-        etudiant.setGroup(resultSet.getString("group"));
+        etudiant.setClasse(resultSet.getString("group"));
         return etudiant;
     }
 }
