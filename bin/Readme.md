@@ -36,7 +36,7 @@ once you have cloned the gateway project, go to the **root folder** and run the 
 wait for all containers to start then start the API server by running in the root folder:
 
     mvn clean install:  (to clean existing build folder and install a new version of gateway server)
-    mvn spring-boot:run :  (to run the new installed version)
+    mvn spring_boot:run :  (to run the new installed version)
 
 # Git
 
