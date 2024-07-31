@@ -1,0 +1,22 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+
+
+before_script:
+  - mvn clean  
+
+maven-build:
+  image: maven:3-amazoncorretto-21
+  stage: build
+  script: "mvn clean install -DskipTests"
+  artifacts:
+    paths:
+      - target/*.jar
+
+
+
+
