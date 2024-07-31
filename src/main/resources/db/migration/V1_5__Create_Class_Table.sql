@@ -1,0 +1,6 @@
+CREATE TABLE class (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    class_name VARCHAR(100) NOT NULL,
+    number_of_students INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
