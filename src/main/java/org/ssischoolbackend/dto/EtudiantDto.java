@@ -1,6 +1,5 @@
 package org.ssischoolbackend.dto;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,10 +11,10 @@ public class EtudiantDto {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String adress;
+    private String address;
     private String zipCode;
     private String gender;
     private String level;
     private String classe;
+    private Long parentId;
 }
-
