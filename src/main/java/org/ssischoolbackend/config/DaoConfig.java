@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.core.io.ClassPathResource;
-
 @Configuration
 public class DaoConfig {
     @Bean
@@ -16,10 +15,13 @@ public class DaoConfig {
                 new ClassPathResource("sql/espace.properties"),
                 new ClassPathResource("sql/etudiant.properties"),
                 new ClassPathResource("sql/parent.properties"),
+                new ClassPathResource("sql/teacher.properties"),
+                new ClassPathResource("sql/users.properties"),
         };
 
         prop.setLocations(resources);
         prop.setIgnoreResourceNotFound(true);
         return prop;
     }
+
 }

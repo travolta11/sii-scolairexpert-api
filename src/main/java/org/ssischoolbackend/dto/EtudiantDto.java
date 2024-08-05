@@ -15,6 +15,7 @@ public class EtudiantDto {
     private String zipCode;
     private String gender;
     private String level;
-    private String classe;
+    private String dateOfBirth;
+    private Long classId;
     private Long parentId;
 }

@@ -37,8 +37,9 @@ public class EtudiantDAO {
                 .addValue("zipCode", etudiant.getZipCode())
                 .addValue("gender", etudiant.getGender())
                 .addValue("level", etudiant.getLevel())
-                .addValue("classe", etudiant.getClasse())
-                .addValue("parentId", etudiant.getParentId());
+                .addValue("dateOfBirth", etudiant.getDateOfBirth())
+                .addValue("parentId", etudiant.getParentId())
+                .addValue("classId", etudiant.getClassId());
 
         int insert = jdbcTemplate.update(sqlProperties.getProperty("etudiant.create"), sqlParameterSource, holder);
         if (insert == 1) {
@@ -83,14 +84,13 @@ public class EtudiantDAO {
                 .addValue("zipCode", etudiant.getZipCode())
                 .addValue("gender", etudiant.getGender())
                 .addValue("level", etudiant.getLevel())
-                .addValue("classe", etudiant.getClasse())
-                .addValue("parentId", etudiant.getParentId());
+                .addValue("dateOfBirth", etudiant.getDateOfBirth())
+                .addValue("parentId", etudiant.getParentId())
+                .addValue("classId", etudiant.getClassId());
 
         int update = jdbcTemplate.update(sqlProperties.getProperty("etudiant.update"), sqlParameterSource);
         if (update == 1) {
-            log.debug("Etudiant updated successfully: " + etudiant.getId());
-        } else {
-            log.error("Failed to update Etudiant: " + etudiant.getId());
+            log.debug("Etudiant Updated :) " + etudiant.getFirstName() + " " + etudiant.getLastName());
         }
     }
 
@@ -98,9 +98,7 @@ public class EtudiantDAO {
         SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
         int delete = jdbcTemplate.update(sqlProperties.getProperty("etudiant.delete"), namedParameters);
         if (delete == 1) {
-            log.debug("Etudiant deleted successfully: " + id);
-        } else {
-            log.error("Failed to delete Etudiant: " + id);
+            log.debug("Etudiant Deleted with id: " + id);
         }
     }
 }

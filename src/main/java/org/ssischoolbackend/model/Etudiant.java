@@ -18,7 +18,8 @@ public class Etudiant {
     private String zipCode;
     private String gender;
     private String level;
-    private String classe;
+    private String dateOfBirth;
+    private Long classId;
     private Long parentId;
 
     public static Etudiant baseMapper(ResultSet resultSet, int rowNumber) throws SQLException {
@@ -32,7 +33,8 @@ public class Etudiant {
         etudiant.setZipCode(resultSet.getString("zip_code"));
         etudiant.setGender(resultSet.getString("gender"));
         etudiant.setLevel(resultSet.getString("level"));
-        etudiant.setClasse(resultSet.getString("classe"));
+        etudiant.setDateOfBirth(resultSet.getString("date_of_birth"));
+        etudiant.setClassId(resultSet.getLong("class_id"));
         etudiant.setParentId(resultSet.getLong("parent_id"));
         return etudiant;
     }

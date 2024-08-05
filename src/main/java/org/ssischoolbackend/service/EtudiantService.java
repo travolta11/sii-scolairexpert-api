@@ -34,8 +34,9 @@ public class EtudiantService {
         etudiant.setZipCode(etudiantDTO.getZipCode());
         etudiant.setGender(etudiantDTO.getGender());
         etudiant.setLevel(etudiantDTO.getLevel());
-        etudiant.setClasse(etudiantDTO.getClasse());
+        etudiant.setDateOfBirth(etudiantDTO.getDateOfBirth());
         etudiant.setParentId(etudiantDTO.getParentId());
+        etudiant.setClassId(etudiantDTO.getClassId());
         etudiantDAO.createNewEtudiant(etudiant);
     }
 
@@ -50,8 +51,9 @@ public class EtudiantService {
         etudiant.setZipCode(etudiantDTO.getZipCode());
         etudiant.setGender(etudiantDTO.getGender());
         etudiant.setLevel(etudiantDTO.getLevel());
-        etudiant.setClasse(etudiantDTO.getClasse());
+        etudiant.setDateOfBirth(etudiantDTO.getDateOfBirth());
         etudiant.setParentId(etudiantDTO.getParentId());
+        etudiant.setClassId(etudiantDTO.getClassId());
         etudiantDAO.updateEtudiant(etudiant);
     }
 
