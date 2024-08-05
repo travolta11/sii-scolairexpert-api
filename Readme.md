@@ -16,27 +16,27 @@ The tools that you'll need for developping on this project are :
 - **Maven** : https://maven.apache.org/
 - **Docker** : https://www.docker.com/
 - Your favorite IDE. If you don't have any idea :
-    * **Intellij** : https://www.jetbrains.com/idea/ (please buy a valid licence, or use community version, or use EAP version)
-    * **Eclipse** : https://www.eclipse.org/downloads/eclipse-packages/ (latest version is recommended to support JDK 21)
-    * You also need to install **Lombok** on your IDE (by double-clicking on Lombok Maven JAR dependency).
+  * **Intellij** : https://www.jetbrains.com/idea/ (please buy a valid licence, or use community version, or use EAP version)
+  * **Eclipse** : https://www.eclipse.org/downloads/eclipse-packages/ (latest version is recommended to support JDK 21)
+  * You also need to install **Lombok** on your IDE (by double-clicking on Lombok Maven JAR dependency).
 
 # Starting dev environment
 
 To start your dev environment, you need to follow these steps:
 
 * **Docker containers** :
-    * gateway needs these containers to be running to function properly:
-        - mysql
+  * gateway needs these containers to be running to function properly:
+    - mysql
 
 once you have cloned the gateway project, go to the **root folder** and run the command **docker-compose up -d --build**
 * **Mysql**
-    *  once your mysql database container is running, you can access either from included cloudBeaver client [http://localhost:3306](http://localhost:3306) and setup connection with the mysql container, or a client of your choice.
+  *  once your mysql database container is running, you can access either from included cloudBeaver client [http://localhost:3306](http://localhost:3306) and setup connection with the mysql container, or a client of your choice.
 
 # Starting API server
 wait for all containers to start then start the API server by running in the root folder:
 
     mvn clean install:  (to clean existing build folder and install a new version of gateway server)
-    mvn spring-boot:run :  (to run the new installed version)
+    mvn spring_boot:run :  (to run the new installed version)
 
 # Git
 
