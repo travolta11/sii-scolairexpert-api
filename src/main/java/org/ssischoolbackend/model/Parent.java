@@ -12,7 +12,7 @@ public class Parent {
     private Long id;
     private String firstName;
     private String lastName;
-    private String phoneNumber;
+    private String phone;
     private String email;
 
     public static Parent baseMapper(ResultSet resultSet, int rowNumber) throws SQLException {
@@ -21,7 +21,7 @@ public class Parent {
         parent.setFirstName(resultSet.getString("first_name"));
         parent.setLastName(resultSet.getString("last_name"));
         parent.setEmail(resultSet.getString("email"));
-        parent.setPhoneNumber(resultSet.getString("phone_number"));
+        parent.setPhone(resultSet.getString("phone"));
         return parent;
     }
 }

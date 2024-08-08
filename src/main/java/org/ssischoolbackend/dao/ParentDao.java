@@ -32,7 +32,7 @@ public class ParentDao {
                 .addValue("first_name", parent.getFirstName())
                 .addValue("last_name", parent.getLastName())
                 .addValue("email", parent.getEmail())
-                .addValue("phone_number", parent.getPhoneNumber());
+                .addValue("phone", parent.getPhone());
 
         int insert = jdbcTemplate.update(sqlProperties.getProperty("parent.create"), sqlParameterSource, holder);
         if (insert == 1) {
@@ -72,7 +72,7 @@ public class ParentDao {
                 .addValue("first_name", parent.getFirstName())
                 .addValue("last_name", parent.getLastName())
                 .addValue("email", parent.getEmail())
-                .addValue("phone_number", parent.getPhoneNumber());
+                .addValue("phone", parent.getPhone());
 
         int update = jdbcTemplate.update(sqlProperties.getProperty("parent.update"), sqlParameterSource);
         if (update == 1) {

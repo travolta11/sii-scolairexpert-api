@@ -30,7 +30,7 @@ public class ParentController {
             parentDto.setId(parent.getId());
             parentDto.setFirstName(parent.getFirstName());
             parentDto.setLastName(parent.getLastName());
-            parentDto.setPhoneNumber(parent.getPhoneNumber());
+            parentDto.setPhone(parent.getPhone());
             parentDto.setEmail(parent.getEmail());
             parentDto.setHasAssociatedStudents(parentService.hasAssociatedStudents(parent.getId()));
             return parentDto;

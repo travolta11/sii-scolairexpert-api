@@ -28,7 +28,7 @@ public class ParentService {
         Parent parent = new Parent();
         parent.setFirstName(parentDTO.getFirstName());
         parent.setLastName(parentDTO.getLastName());
-        parent.setPhoneNumber(parentDTO.getPhoneNumber());
+        parent.setPhone(parentDTO.getPhone());
         parent.setEmail(parentDTO.getEmail());
         parentDAO.createNewParent(parent);
     }
@@ -38,7 +38,7 @@ public class ParentService {
         parent.setId(id);
         parent.setFirstName(parentDTO.getFirstName());
         parent.setLastName(parentDTO.getLastName());
-        parent.setPhoneNumber(parentDTO.getPhoneNumber());
+        parent.setPhone(parentDTO.getPhone());
         parent.setEmail(parentDTO.getEmail());
         parentDAO.updateParent(parent);
     }
