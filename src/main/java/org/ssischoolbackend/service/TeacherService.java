@@ -29,4 +29,12 @@ public class TeacherService {
                 .map(TeacherDto::fromEntity)
                 .collect(Collectors.toList());
     }
+
+    public int updateTeacher(TeacherDto teacherDto) {
+        return this.teacherDao.updateTeacher(TeacherDto.toEntity(teacherDto));
+    }
+
+    public int deleteTeacher(Long id) {
+        return this.teacherDao.deleteTeacher(id);
+    }
 }

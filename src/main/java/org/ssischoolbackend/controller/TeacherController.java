@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/teacher")
-@CrossOrigin(origins = "http://localhost:4200") 
+// @CrossOrigin(origins = "http://localhost:4200") 
 public class TeacherController {
 
     @Autowired
@@ -34,5 +34,26 @@ public class TeacherController {
         Optional<TeacherDto> teacherDto = teacherService.getTeacherByID(id);
         return teacherDto.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateTeacher(@PathVariable Long id, @RequestBody TeacherDto teacherDto) {
+        teacherDto.setId(id);
+        int updated = teacherService.updateTeacher(teacherDto);
+        if (updated == 1) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTeacher(@PathVariable Long id) {
+        int deleted = teacherService.deleteTeacher(id);
+        if (deleted == 1) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
