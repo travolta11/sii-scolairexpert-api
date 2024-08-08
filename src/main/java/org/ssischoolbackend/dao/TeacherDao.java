@@ -55,4 +55,19 @@ public class TeacherDao {
     public List<Teacher> getAllTeachers() {
         return jdbcTemplate.query(sqlProperties.getProperty("teacher.get.all"), new MapSqlParameterSource(), Teacher::baseMapper);
     }
+
+    public int updateTeacher(Teacher teacher) {
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("teacher_id", teacher.getId())
+                .addValue("full_name", teacher.getFullName())
+                .addValue("email", teacher.getEmail())
+                .addValue("phone_no", teacher.getPhoneNo());
+        return jdbcTemplate.update(sqlProperties.getProperty("teacher.update"), sqlParameterSource);
+    }
+
+    public int deleteTeacher(Long id) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("teacher_id", id);
+        return jdbcTemplate.update(sqlProperties.getProperty("teacher.delete"), namedParameters);
+    }
+    
 }
