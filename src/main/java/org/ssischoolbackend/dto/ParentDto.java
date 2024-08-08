@@ -9,6 +9,7 @@ public class ParentDto {
     private Long id;
     private String firstName;
     private String lastName;
-    private String phoneNumber;
+    private String phone;
     private String email;
+    private boolean hasAssociatedStudents;
 }

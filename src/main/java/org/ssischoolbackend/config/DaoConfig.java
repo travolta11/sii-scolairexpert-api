@@ -13,9 +13,12 @@ public class DaoConfig {
         PropertiesFactoryBean prop = new PropertiesFactoryBean();
         ClassPathResource[] resources = new ClassPathResource[] {
                 new ClassPathResource("sql/espace.properties"),
+
+                new ClassPathResource("sql/etudiant.properties"),
+                new ClassPathResource("sql/parent.properties"),
                 new ClassPathResource("sql/staff.properties"),
                 new ClassPathResource("sql/teacher.properties"),
-                new ClassPathResource("sql/users.properties")
+                new ClassPathResource("sql/users.properties"),
         };
 
         prop.setLocations(resources);
