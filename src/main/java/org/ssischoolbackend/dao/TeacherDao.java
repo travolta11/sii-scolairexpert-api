@@ -30,7 +30,7 @@ public class TeacherDao {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
                 .addValue("full_name", teacher.getFullName())
                 .addValue("email", teacher.getEmail())
-                .addValue("phone_no", teacher.getPhoneNo());
+                .addValue("phone", teacher.getPhoneNo());
         int insert = jdbcTemplate.update(sqlProperties.getProperty("teacher.create"), sqlParameterSource, holder);
         if (insert == 1) {
             log.debug("New teacher Created :) " + teacher.getFullName());
@@ -42,7 +42,7 @@ public class TeacherDao {
     }
 
     public Optional<Teacher> getTeacherById(Long id) {
-        SqlParameterSource namedParameters = new MapSqlParameterSource("teacher_id", id);
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
         Teacher teacher = null;
         try {
             teacher = jdbcTemplate.queryForObject(sqlProperties.getProperty("teacher.get.one"), namedParameters, Teacher::baseMapper);
@@ -58,15 +58,15 @@ public class TeacherDao {
 
     public int updateTeacher(Teacher teacher) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
-                .addValue("teacher_id", teacher.getId())
+                .addValue("id", teacher.getId())
                 .addValue("full_name", teacher.getFullName())
                 .addValue("email", teacher.getEmail())
-                .addValue("phone_no", teacher.getPhoneNo());
+                .addValue("phone", teacher.getPhoneNo());
         return jdbcTemplate.update(sqlProperties.getProperty("teacher.update"), sqlParameterSource);
     }
 
     public int deleteTeacher(Long id) {
-        SqlParameterSource namedParameters = new MapSqlParameterSource("teacher_id", id);
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
         return jdbcTemplate.update(sqlProperties.getProperty("teacher.delete"), namedParameters);
     }
     
