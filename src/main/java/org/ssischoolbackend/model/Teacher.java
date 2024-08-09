@@ -20,10 +20,10 @@ public class Teacher {
 
     public static Teacher baseMapper(ResultSet resultSet, int rowNumber) throws SQLException {
         Teacher teacher = new Teacher();
-        teacher.setId(resultSet.getLong("teacher_id"));
+        teacher.setId(resultSet.getLong("id"));
         teacher.setFullName(resultSet.getString("full_name"));
         teacher.setEmail(resultSet.getString("email"));
-        teacher.setPhoneNo(resultSet.getString("phone_no"));
+        teacher.setPhoneNo(resultSet.getString("phone"));
         return teacher;
     }
 }
