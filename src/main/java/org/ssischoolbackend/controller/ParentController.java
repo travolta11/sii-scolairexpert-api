@@ -32,6 +32,7 @@ public class ParentController {
             parentDto.setLastName(parent.getLastName());
             parentDto.setPhone(parent.getPhone());
             parentDto.setEmail(parent.getEmail());
+            parentDto.setCin(parent.getCin());
             parentDto.setHasAssociatedStudents(parentService.hasAssociatedStudents(parent.getId()));
             return parentDto;
         }).collect(Collectors.toList());
@@ -39,9 +40,33 @@ public class ParentController {
         return new ApiResponse<>(parentDtos, totalPages);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public Parent getParentById(@PathVariable Long id) {
         return parentService.getParentById(id);
+    }
+
+    @GetMapping("/cin/{cin}")
+    public Parent getParentByCin(@PathVariable String cin) {
+        Parent parent = parentService.getParentByCin(cin);
+        if (parent == null) {
+            return null;
+        }
+        return parent;
+    }
+
+    @GetMapping("/check-cin-exists/{cin}")
+    public boolean checkCinExists(@PathVariable String cin) {
+        return parentService.isCinExists(cin);
+    }
+
+    @GetMapping("/check-email-exists/{email}")
+    public boolean checkEmailExists(@PathVariable String email) {
+        return parentService.isEmailExists(email);
+    }
+
+    @GetMapping("/check-phone-exists/{phone}")
+    public boolean checkPhoneExists(@PathVariable String phone) {
+        return parentService.isPhoneExists(phone);
     }
 
     @PostMapping
