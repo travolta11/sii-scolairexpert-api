@@ -24,12 +24,17 @@ public class ParentService {
         return parentDAO.getParentById(id).orElse(null);
     }
 
+    public Parent getParentByCin(String cin) {
+        return parentDAO.getParentByCin(cin).orElse(null);
+    }
+
     public void saveParent(ParentDto parentDTO) {
         Parent parent = new Parent();
         parent.setFirstName(parentDTO.getFirstName());
         parent.setLastName(parentDTO.getLastName());
         parent.setPhone(parentDTO.getPhone());
         parent.setEmail(parentDTO.getEmail());
+        parent.setCin(parentDTO.getCin());
         parentDAO.createNewParent(parent);
     }
 
@@ -40,6 +45,7 @@ public class ParentService {
         parent.setLastName(parentDTO.getLastName());
         parent.setPhone(parentDTO.getPhone());
         parent.setEmail(parentDTO.getEmail());
+        parent.setCin(parentDTO.getCin());
         parentDAO.updateParent(parent);
     }
 
@@ -53,6 +59,18 @@ public class ParentService {
 
     public boolean hasAssociatedStudents(Long parentId) {
         return parentDAO.hasAssociatedStudents(parentId);
+    }
+
+    public boolean isCinExists(String cin) {
+        return parentDAO.getParentByCin(cin).isPresent();
+    }
+
+    public boolean isEmailExists(String email) {
+        return parentDAO.getParentByEmail(email).isPresent();
+    }
+
+    public boolean isPhoneExists(String phone) {
+        return parentDAO.getParentByPhone(phone).isPresent();
     }
 
 }

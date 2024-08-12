@@ -12,4 +12,5 @@ public class ParentDto {
     private String phone;
     private String email;
     private boolean hasAssociatedStudents;
+    private String cin;
 }
