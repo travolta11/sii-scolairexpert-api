@@ -103,33 +103,21 @@ public class ParentDao {
     public Optional<Parent> getParentByCin(String cin) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("cin", cin);
         Parent parent = null;
-        try {
             parent = jdbcTemplate.queryForObject(sqlProperties.getProperty("parent.get.by.cin"), namedParameters, Parent::baseMapper);
-        } catch (DataAccessException dataAccessException) {
-            log.error("Parent does not exist with cin: " + cin);
-        }
         return Optional.ofNullable(parent);
     }
 
     public Optional<Parent> getParentByEmail(String email) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("email",email.trim().toLowerCase());
         Parent parent = null;
-        try {
             parent = jdbcTemplate.queryForObject(sqlProperties.getProperty("parent.get.by.email"), namedParameters, Parent::baseMapper);
-        } catch (DataAccessException dataAccessException) {
-            log.error("Parent does not exist with email: " + email);
-        }
         return Optional.ofNullable(parent);
     }
 
     public Optional<Parent> getParentByPhone(String phone) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("phone",phone.trim());
         Parent parent = null;
-        try {
             parent = jdbcTemplate.queryForObject(sqlProperties.getProperty("parent.get.by.phone"), namedParameters, Parent::baseMapper);
-        } catch (DataAccessException dataAccessException) {
-            log.error("Parent does not exist with phone: " + phone);
-        }
         return Optional.ofNullable(parent);
     }
 }

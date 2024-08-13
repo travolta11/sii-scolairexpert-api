@@ -31,6 +31,16 @@ public class EtudiantController {
         return etudiantService.getEtudiantById(id);
     }
 
+    @GetMapping("/check-email-exists/{email}")
+    public boolean checkEmailExists(@PathVariable String email) {
+        return etudiantService.isEmailExists(email);
+    }
+
+    @GetMapping("/check-phone-exists/{phoneNumber}")
+    public boolean checkPhoneExists(@PathVariable String phoneNumber) {
+        return etudiantService.isPhoneExists(phoneNumber);
+    }
+
     @PostMapping
     public void saveEtudiant(@RequestBody EtudiantDto etudiantDTO) {
         etudiantService.saveEtudiant(etudiantDTO);

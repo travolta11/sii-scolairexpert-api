@@ -64,4 +64,12 @@ public class EtudiantService {
     public int getTotalEtudiants() {
         return etudiantDAO.getTotalEtudiants();
     }
+
+    public boolean isEmailExists(String email) {
+        return etudiantDAO.getEtudiantByEmail(email).isPresent();
+    }
+
+    public boolean isPhoneExists(String phoneNumber) {
+        return etudiantDAO.getEtudiantByPhone(phoneNumber).isPresent();
+    }
 }
