@@ -11,6 +11,6 @@ public class ParentDto {
     private String lastName;
     private String phone;
     private String email;
-    private boolean hasAssociatedStudents;
     private String cin;
+    private boolean hasAssociatedStudents;
 }

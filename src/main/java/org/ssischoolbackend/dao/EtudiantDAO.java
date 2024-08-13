@@ -106,14 +106,22 @@ public class EtudiantDAO {
     public Optional<Etudiant> getEtudiantByEmail(String email) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("email",email.trim().toLowerCase());
         Etudiant etudiant = null;
+        try {
             etudiant = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.by.email"), namedParameters, Etudiant::baseMapper);
-        return Optional.ofNullable(etudiant);
+        } catch (DataAccessException dataAccessException) {
+        log.error("Student does not exist with email: " + email);
+    }
+            return Optional.ofNullable(etudiant);
     }
 
     public Optional<Etudiant> getEtudiantByPhone(String phoneNumber) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("phoneNumber",phoneNumber.trim());
         Etudiant etudiant = null;
+        try {
             etudiant = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.by.phoneNumber"), namedParameters, Etudiant::baseMapper);
-        return Optional.ofNullable(etudiant);
+        } catch (DataAccessException dataAccessException) {
+            log.error("Student does not exist with phoneNumber: " + phoneNumber);
+        }
+            return Optional.ofNullable(etudiant);
     }
 }
