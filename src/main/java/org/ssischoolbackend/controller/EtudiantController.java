@@ -43,6 +43,7 @@ public class EtudiantController {
 
     @PostMapping
     public void saveEtudiant(@RequestBody EtudiantDto etudiantDTO) {
+        System.out.println("Class ID received: " + etudiantDTO.getClassId());
         etudiantService.saveEtudiant(etudiantDTO);
     }
 

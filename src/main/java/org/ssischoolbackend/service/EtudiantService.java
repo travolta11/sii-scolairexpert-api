@@ -4,11 +4,14 @@ import org.springframework.stereotype.Service;
 import org.ssischoolbackend.dao.EtudiantDAO;
 import org.ssischoolbackend.dto.EtudiantDto;
 import org.ssischoolbackend.model.Etudiant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 @Service
 public class EtudiantService {
+    private static final Logger log = LoggerFactory.getLogger(EtudiantService.class);
     private final EtudiantDAO etudiantDAO;
 
     public EtudiantService(EtudiantDAO etudiantDAO) {
@@ -37,6 +40,7 @@ public class EtudiantService {
         etudiant.setDateOfBirth(etudiantDTO.getDateOfBirth());
         etudiant.setParentId(etudiantDTO.getParentId());
         etudiant.setClassId(etudiantDTO.getClassId());
+        log.info("Class ID in Service: {}", etudiantDTO.getClassId());
         etudiantDAO.createNewEtudiant(etudiant);
     }
 

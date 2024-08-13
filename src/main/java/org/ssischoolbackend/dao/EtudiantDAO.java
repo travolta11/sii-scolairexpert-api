@@ -16,10 +16,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Slf4j
 @Repository
 public class EtudiantDAO {
+
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
@@ -39,8 +42,9 @@ public class EtudiantDAO {
                 .addValue("gender", etudiant.getGender())
                 .addValue("level", etudiant.getLevel())
                 .addValue("dateOfBirth", etudiant.getDateOfBirth())
-                .addValue("parentId", etudiant.getParentId())
-                .addValue("classId", etudiant.getClassId());
+                .addValue("classId", etudiant.getClassId())
+                .addValue("parentId", etudiant.getParentId());
+        log.info("Creating new Etudiant with Class ID: {}", etudiant.getClassId());
 
         int insert = jdbcTemplate.update(sqlProperties.getProperty("etudiant.create"), sqlParameterSource, holder);
         if (insert == 1) {
