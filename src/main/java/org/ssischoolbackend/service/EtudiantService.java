@@ -76,4 +76,9 @@ public class EtudiantService {
     public boolean isPhoneExists(String phoneNumber) {
         return etudiantDAO.getEtudiantByPhone(phoneNumber).isPresent();
     }
+
+    public List<Etudiant> getEtudiantsByClassId(Long classId) {
+        return etudiantDAO.getEtudiantsByClassId(classId);
+    }
+
 }

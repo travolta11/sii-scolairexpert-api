@@ -128,4 +128,10 @@ public class EtudiantDAO {
         }
             return Optional.ofNullable(etudiant);
     }
+
+    public List<Etudiant> getEtudiantsByClassId(Long classId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("classId", classId);
+        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get.by.classId"), namedParameters, Etudiant::baseMapper);
+    }
+
 }
