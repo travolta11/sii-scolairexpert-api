@@ -41,6 +41,12 @@ public class EtudiantController {
         return etudiantService.isPhoneExists(phoneNumber);
     }
 
+    @GetMapping("/class/{classId}")
+    public List<Etudiant> getEtudiantsByClassId(@PathVariable Long classId) {
+        return etudiantService.getEtudiantsByClassId(classId);
+    }
+
+
     @PostMapping
     public void saveEtudiant(@RequestBody EtudiantDto etudiantDTO) {
         System.out.println("Class ID received: " + etudiantDTO.getClassId());
