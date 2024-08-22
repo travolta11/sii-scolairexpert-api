@@ -132,4 +132,15 @@ public class ParentDao {
         }
         return Optional.ofNullable(parent);
     }
+    public String getEmailByParentId(Long id) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
+        String email = null;
+        try {
+            email = jdbcTemplate.queryForObject(sqlProperties.getProperty("parent.get.email.by.id"), namedParameters, String.class);
+        } catch (DataAccessException dataAccessException) {
+            log.error("Parent does not exist with id: " + id);
+        }
+        return email;
+    }
+
 }
