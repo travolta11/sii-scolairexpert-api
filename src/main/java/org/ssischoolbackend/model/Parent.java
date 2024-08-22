@@ -15,6 +15,7 @@ public class Parent {
     private String phone;
     private String email;
     private String cin;
+    private Long userId;
 
     public static Parent baseMapper(ResultSet resultSet, int rowNumber) throws SQLException {
         Parent parent = new Parent();
@@ -24,6 +25,7 @@ public class Parent {
         parent.setEmail(resultSet.getString("email"));
         parent.setPhone(resultSet.getString("phone"));
         parent.setCin(resultSet.getString("cin"));
+        parent.setUserId(resultSet.getLong("user_id"));
         return parent;
     }
 }

@@ -33,7 +33,8 @@ public class ParentDao {
                 .addValue("last_name", parent.getLastName())
                 .addValue("email", parent.getEmail())
                 .addValue("phone", parent.getPhone())
-                .addValue("cin", parent.getCin());
+                .addValue("cin", parent.getCin())
+                .addValue("user_id", parent.getUserId());
 
         int insert = jdbcTemplate.update(sqlProperties.getProperty("parent.create"), sqlParameterSource, holder);
         if (insert == 1) {
@@ -44,6 +45,7 @@ public class ParentDao {
             return 0;
         }
     }
+
 
     public Optional<Parent> getParentById(Long id) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
@@ -83,6 +85,7 @@ public class ParentDao {
             log.error("Failed to update Parent: " + parent.getId());
         }
     }
+
 
     public void deleteParentById(Long id) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("id", id);
