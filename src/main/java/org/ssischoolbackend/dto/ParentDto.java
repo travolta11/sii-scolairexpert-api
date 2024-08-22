@@ -13,4 +13,6 @@ public class ParentDto {
     private String email;
     private String cin;
     private boolean hasAssociatedStudents;
+    private Long userId;
 }
+
