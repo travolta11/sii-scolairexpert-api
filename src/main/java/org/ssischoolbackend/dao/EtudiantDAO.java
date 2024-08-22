@@ -134,4 +134,28 @@ public class EtudiantDAO {
         return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get.by.classId"), namedParameters, Etudiant::baseMapper);
     }
 
+    public long getParentIdByStudentId(int studentId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", studentId);
+        Long parentId = null;
+        try {
+            parentId = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.parentId.by.studentId"), namedParameters, Long.class);
+        } catch (DataAccessException dataAccessException) {
+            log.error("Parent ID does not exist for student with id: " + studentId);
+        }
+        if (parentId == null) {
+            throw new IllegalStateException("Parent ID does not exist for student with id: " + studentId);
+        }
+        return parentId;
+    }
+    public Optional<String> getFullNameByStudentId(int studentId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", studentId);
+        String fullName = null;
+        try {
+            fullName = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.fullname.by.studentId"), namedParameters, String.class);
+        } catch (DataAccessException dataAccessException) {
+            log.error("Full name does not exist for student with id: " + studentId);
+        }
+        return Optional.ofNullable(fullName);
+    }
+
 }
