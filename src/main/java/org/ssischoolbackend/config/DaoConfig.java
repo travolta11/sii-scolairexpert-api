@@ -19,6 +19,7 @@ public class DaoConfig {
                 new ClassPathResource("sql/staff.properties"),
                 new ClassPathResource("sql/teacher.properties"),
                 new ClassPathResource("sql/users.properties"),
+                new ClassPathResource("sql/materiel.properties"),
         };
 
         prop.setLocations(resources);
