@@ -5,12 +5,15 @@ import org.ssischoolbackend.dao.EtudiantDAO;
 import org.ssischoolbackend.dto.EtudiantDto;
 import org.ssischoolbackend.dto.StaffDto;
 import org.ssischoolbackend.model.Etudiant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class EtudiantService {
+    private static final Logger log = LoggerFactory.getLogger(EtudiantService.class);
     private final EtudiantDAO etudiantDAO;
 
     public EtudiantService(EtudiantDAO etudiantDAO) {
@@ -42,6 +45,7 @@ public class EtudiantService {
         etudiant.setDateOfBirth(etudiantDTO.getDateOfBirth());
         etudiant.setParentId(etudiantDTO.getParentId());
         etudiant.setClassId(etudiantDTO.getClassId());
+        log.info("Class ID in Service: {}", etudiantDTO.getClassId());
         etudiantDAO.createNewEtudiant(etudiant);
     }
 
@@ -70,7 +74,21 @@ public class EtudiantService {
         return etudiantDAO.getTotalEtudiants();
     }
 
+
     public List<Etudiant> getEtudiantsByClass(Long classId) {
         return etudiantDAO.getEtudiantsByClass(classId);
     }
+
+    public boolean isEmailExists(String email) {
+        return etudiantDAO.getEtudiantByEmail(email).isPresent();
+    }
+
+    public boolean isPhoneExists(String phoneNumber) {
+        return etudiantDAO.getEtudiantByPhone(phoneNumber).isPresent();
+    }
+
+    public List<Etudiant> getEtudiantsByClassId(Long classId) {
+        return etudiantDAO.getEtudiantsByClassId(classId);
+    }
+
 }

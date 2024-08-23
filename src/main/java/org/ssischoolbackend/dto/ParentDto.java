@@ -11,5 +11,8 @@ public class ParentDto {
     private String lastName;
     private String phone;
     private String email;
+    private String cin;
     private boolean hasAssociatedStudents;
+    private Long userId;
 }
+

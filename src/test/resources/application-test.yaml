@@ -6,5 +6,5 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri:
-          public-key-location: classpath:/keycloak-public-key
+          issuer-uri: http://localhost:9090/realms/sii-scolairexpert
+          # public-key-location: classpath:/keycloak-public-key

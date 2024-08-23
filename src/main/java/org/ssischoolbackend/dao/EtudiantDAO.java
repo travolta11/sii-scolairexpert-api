@@ -11,15 +11,20 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.ssischoolbackend.model.Etudiant;
 import org.ssischoolbackend.model.Staff;
+import org.ssischoolbackend.model.Parent;
+
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Slf4j
 @Repository
 public class EtudiantDAO {
+
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
@@ -39,8 +44,9 @@ public class EtudiantDAO {
                 .addValue("gender", etudiant.getGender())
                 .addValue("level", etudiant.getLevel())
                 .addValue("dateOfBirth", etudiant.getDateOfBirth())
-                .addValue("parentId", etudiant.getParentId())
-                .addValue("classId", etudiant.getClassId());
+                .addValue("classId", etudiant.getClassId())
+                .addValue("parentId", etudiant.getParentId());
+        log.info("Creating new Etudiant with Class ID: {}", etudiant.getClassId());
 
         int insert = jdbcTemplate.update(sqlProperties.getProperty("etudiant.create"), sqlParameterSource, holder);
         if (insert == 1) {
@@ -110,4 +116,57 @@ public class EtudiantDAO {
                 .addValue("id", id);
         return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get.by.class"), sqlParameterSource, Etudiant::baseMapper);
     }
+
+    public Optional<Etudiant> getEtudiantByEmail(String email) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("email",email.trim().toLowerCase());
+        Etudiant etudiant = null;
+        try {
+            etudiant = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.by.email"), namedParameters, Etudiant::baseMapper);
+        } catch (DataAccessException dataAccessException) {
+        log.error("Student does not exist with email: " + email);
+    }
+            return Optional.ofNullable(etudiant);
+    }
+
+    public Optional<Etudiant> getEtudiantByPhone(String phoneNumber) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("phoneNumber",phoneNumber.trim());
+        Etudiant etudiant = null;
+        try {
+            etudiant = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.by.phoneNumber"), namedParameters, Etudiant::baseMapper);
+        } catch (DataAccessException dataAccessException) {
+            log.error("Student does not exist with phoneNumber: " + phoneNumber);
+        }
+            return Optional.ofNullable(etudiant);
+    }
+
+    public List<Etudiant> getEtudiantsByClassId(Long classId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("classId", classId);
+        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get.by.classId"), namedParameters, Etudiant::baseMapper);
+    }
+
+    public long getParentIdByStudentId(int studentId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", studentId);
+        Long parentId = null;
+        try {
+            parentId = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.parentId.by.studentId"), namedParameters, Long.class);
+        } catch (DataAccessException dataAccessException) {
+            log.error("Parent ID does not exist for student with id: " + studentId);
+        }
+        if (parentId == null) {
+            throw new IllegalStateException("Parent ID does not exist for student with id: " + studentId);
+        }
+        return parentId;
+    }
+    public Optional<String> getFullNameByStudentId(int studentId) {
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", studentId);
+        String fullName = null;
+        try {
+            fullName = jdbcTemplate.queryForObject(sqlProperties.getProperty("etudiant.get.fullname.by.studentId"), namedParameters, String.class);
+        } catch (DataAccessException dataAccessException) {
+            log.error("Full name does not exist for student with id: " + studentId);
+        }
+        return Optional.ofNullable(fullName);
+    }
+
+
 }
