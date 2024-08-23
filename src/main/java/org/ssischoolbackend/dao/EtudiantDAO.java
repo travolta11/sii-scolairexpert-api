@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.ssischoolbackend.model.Etudiant;
+import org.ssischoolbackend.model.Staff;
 
 import java.util.List;
 import java.util.Objects;
@@ -61,6 +62,9 @@ public class EtudiantDAO {
         }
         return Optional.ofNullable(etudiant);
     }
+    public List<Etudiant> getAllStudents() {
+        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get"),new MapSqlParameterSource(), Etudiant::baseMapper);
+    }
 
     public List<Etudiant> getAllEtudiants(int offset, int size) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
@@ -100,5 +104,10 @@ public class EtudiantDAO {
         if (delete == 1) {
             log.debug("Etudiant Deleted with id: " + id);
         }
+    }
+    public List<Etudiant> getEtudiantsByClass(Long id){
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
+                .addValue("id", id);
+        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get.by.class"), sqlParameterSource, Etudiant::baseMapper);
     }
 }
