@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EtudiantService {
@@ -69,6 +70,11 @@ public class EtudiantService {
         return etudiantDAO.getTotalEtudiants();
     }
 
+    public Map<String, Integer> getEtudiantsParNiveau() {
+        return etudiantDAO.getEtudiantsParNiveau();
+    }
+
+
     public boolean isEmailExists(String email) {
         return etudiantDAO.getEtudiantByEmail(email).isPresent();
     }
@@ -79,6 +85,10 @@ public class EtudiantService {
 
     public List<Etudiant> getEtudiantsByClassId(Long classId) {
         return etudiantDAO.getEtudiantsByClassId(classId);
+    }
+
+    public Map<Integer, Integer> getCountByYear() {
+        return etudiantDAO.getCountByYear();
     }
 
 }

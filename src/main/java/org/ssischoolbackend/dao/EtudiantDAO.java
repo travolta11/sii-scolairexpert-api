@@ -12,10 +12,8 @@ import org.springframework.stereotype.Repository;
 import org.ssischoolbackend.model.Etudiant;
 import org.ssischoolbackend.model.Parent;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -156,6 +154,26 @@ public class EtudiantDAO {
             log.error("Full name does not exist for student with id: " + studentId);
         }
         return Optional.ofNullable(fullName);
+    }
+
+    public Map<String, Integer> getEtudiantsParNiveau() {
+        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.count.by.level"), rs -> {
+            Map<String, Integer> result = new HashMap<>();
+            while (rs.next()) {
+                result.put(rs.getString("level"), rs.getInt("count"));
+            }
+            return result;
+        });
+    }
+
+    public Map<Integer, Integer> getCountByYear() {
+        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.count.by.year"), rs -> {
+            Map<Integer, Integer> result = new HashMap<>();
+            while (rs.next()) {
+                result.put(rs.getInt("year"), rs.getInt("count"));
+            }
+            return result;
+        });
     }
 
 }

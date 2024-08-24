@@ -10,6 +10,7 @@ import org.ssischoolbackend.model.Espace;
 import org.ssischoolbackend.model.Staff;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -47,4 +48,9 @@ public class StaffService {
     private StaffDto getStaffDto(Staff staff) {
         return modelMapper.map(staff, StaffDto.class);
     }
+
+    public Map<String, Integer> getStaffCountByDepartment() {
+        return staffDao.getStaffCountByDepartment();
+    }
+
 }

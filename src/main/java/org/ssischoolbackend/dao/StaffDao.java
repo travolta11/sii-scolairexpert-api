@@ -11,10 +11,8 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.ssischoolbackend.model.Staff;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Repository
@@ -95,6 +93,13 @@ public class StaffDao {
         return rowsAffected > 0;
     }
 
+    public Map<String, Integer> getStaffCountByDepartment() {
+        return jdbcTemplate.query(sqlProperties.getProperty("staff.count.by.department"),
+                        new MapSqlParameterSource(),
+                        (rs, rowNum) -> Map.entry(rs.getString("department"), rs.getInt("staff_count")))
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
 
 
 }

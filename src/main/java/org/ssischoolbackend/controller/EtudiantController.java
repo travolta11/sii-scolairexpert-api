@@ -7,6 +7,7 @@ import org.ssischoolbackend.model.Etudiant;
 import org.ssischoolbackend.service.EtudiantService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/etudiants")
@@ -25,6 +26,22 @@ public class EtudiantController {
         int totalPages = (int) Math.ceil((double) totalEtudiants / size);
         return new ApiResponse<>(etudiants, totalPages);
     }
+
+    @GetMapping("/total")
+    public int getTotalEtudiants() {
+        return etudiantService.getTotalEtudiants();
+    }
+
+    @GetMapping("/par-niveau")
+    public Map<String, Integer> getEtudiantsParNiveau() {
+        return etudiantService.getEtudiantsParNiveau();
+    }
+
+    @GetMapping("/count-by-year")
+    public Map<Integer, Integer> getCountByYear() {
+        return etudiantService.getCountByYear();
+    }
+
 
     @GetMapping("/{id}")
     public Etudiant getEtudiantById(@PathVariable Long id) {
