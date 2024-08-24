@@ -107,12 +107,6 @@ public class EtudiantDAO {
             log.debug("Etudiant Deleted with id: " + id);
         }
     }
-    public List<Etudiant> getEtudiantsByClass(Long id){
-        SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
-                .addValue("id", id);
-        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get.by.class"), sqlParameterSource, Etudiant::baseMapper);
-    }
-
 
     public Optional<Etudiant> getEtudiantByEmail(String email) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("email",email.trim().toLowerCase());

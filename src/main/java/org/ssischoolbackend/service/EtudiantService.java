@@ -78,11 +78,6 @@ public class EtudiantService {
         return etudiantDAO.getEtudiantsParNiveau();
     }
 
-
-    public List<Etudiant> getEtudiantsByClass(Long classId) {
-        return etudiantDAO.getEtudiantsByClass(classId);
-    }
-
     public boolean isEmailExists(String email) {
         return etudiantDAO.getEtudiantByEmail(email).isPresent();
     }
