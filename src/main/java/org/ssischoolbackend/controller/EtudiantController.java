@@ -1,5 +1,6 @@
 package org.ssischoolbackend.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.ssischoolbackend.config.ApiResponse;
 import org.ssischoolbackend.dto.EtudiantDto;
@@ -17,6 +18,11 @@ public class EtudiantController {
 
     public EtudiantController(EtudiantService etudiantService) {
         this.etudiantService = etudiantService;
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Etudiant>> getAllStudents() {
+        return ResponseEntity.ok(this.etudiantService.getAllStudents());
     }
 
     @GetMapping

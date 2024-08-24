@@ -64,6 +64,9 @@ public class EtudiantDAO {
         }
         return Optional.ofNullable(etudiant);
     }
+    public List<Etudiant> getAllStudents() {
+        return jdbcTemplate.query(sqlProperties.getProperty("etudiant.get"),new MapSqlParameterSource(), Etudiant::baseMapper);
+    }
 
     public List<Etudiant> getAllEtudiants(int offset, int size) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()

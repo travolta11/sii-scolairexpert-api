@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Map;
 
 @Service
@@ -22,6 +23,9 @@ public class EtudiantService {
     public List<Etudiant> getAllEtudiants(int page, int size) {
         int offset = page * size;
         return etudiantDAO.getAllEtudiants(offset, size);
+    }
+    public List<Etudiant> getAllStudents() {
+        return this.etudiantDAO.getAllStudents();
     }
 
     public Etudiant getEtudiantById(Long id) {
