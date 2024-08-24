@@ -3,13 +3,13 @@ package org.ssischoolbackend.service;
 import org.springframework.stereotype.Service;
 import org.ssischoolbackend.dao.EtudiantDAO;
 import org.ssischoolbackend.dto.EtudiantDto;
-import org.ssischoolbackend.dto.StaffDto;
 import org.ssischoolbackend.model.Etudiant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Map;
 
 @Service
 public class EtudiantService {
@@ -74,9 +74,8 @@ public class EtudiantService {
         return etudiantDAO.getTotalEtudiants();
     }
 
-
-    public List<Etudiant> getEtudiantsByClass(Long classId) {
-        return etudiantDAO.getEtudiantsByClass(classId);
+    public Map<String, Integer> getEtudiantsParNiveau() {
+        return etudiantDAO.getEtudiantsParNiveau();
     }
 
     public boolean isEmailExists(String email) {
@@ -89,6 +88,10 @@ public class EtudiantService {
 
     public List<Etudiant> getEtudiantsByClassId(Long classId) {
         return etudiantDAO.getEtudiantsByClassId(classId);
+    }
+
+    public Map<Integer, Integer> getCountByYear() {
+        return etudiantDAO.getCountByYear();
     }
 
 }

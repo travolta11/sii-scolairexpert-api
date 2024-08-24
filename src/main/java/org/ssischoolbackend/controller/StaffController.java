@@ -11,6 +11,7 @@ import org.ssischoolbackend.model.Staff;
 import org.ssischoolbackend.service.StaffService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -60,6 +61,10 @@ public class StaffController {
         }
     }
 
+    @GetMapping("/count/by-department")
+    public ResponseEntity<Map<String, Integer>> getStaffCountByDepartment() {
+        return ResponseEntity.ok(staffService.getStaffCountByDepartment());
+    }
 
 
 }
