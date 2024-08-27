@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver xmlns="https://www.optaplanner.org/xsd/solver"
+       >
+
+    <!-- Specify your Planning Solution class -->
+    <solutionClass>org.ssischoolbackend.model.Timetable</solutionClass>
+
+    <!-- Specify your Planning Entity classes -->
+    <entityClass>org.ssischoolbackend.model.Session</entityClass>
+
+    <!-- Configure the constraint provider class -->
+    <scoreDirectorFactory>
+        <constraintProviderClass>org.ssischoolbackend.solver.TimetableConstraintProvider</constraintProviderClass>
+    </scoreDirectorFactory>
+
+    <!-- Configure the termination conditions -->
+    <termination>
+        <secondsSpentLimit>120</secondsSpentLimit>
+    </termination>
+
+</solver>
