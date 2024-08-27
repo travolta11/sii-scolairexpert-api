@@ -1,0 +1,7 @@
+CREATE TABLE timeslot (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    day_of_week INT NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

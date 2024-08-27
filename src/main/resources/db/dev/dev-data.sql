@@ -11,4 +11,6 @@ values ("espace 1"),
   /* INSERT INTO users(username,password,email,role)
  values ("admin","issam","admin@gmail.com","admin"),
        ("administration","issam","administration@gmail.com","administration"),
-       ("accounting","issam","accounting@gmail.com","accounting"); */
+       ("accounting","issam","accounting@gmail.com","accounting");
+
+
