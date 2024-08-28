@@ -25,19 +25,18 @@ public class TimetableConstraintProvider implements ConstraintProvider {
     }
 
     private Constraint roomConflict(ConstraintFactory constraintFactory) {
-        // A room can accommodate at most one session at the same time.
         return constraintFactory
                 .forEach(Session.class)
                 .join(Session.class,
                         Joiners.equal(Session::getTimeslot),
                         Joiners.equal(Session::getRoom),
-                        Joiners.lessThan(Session::getId))
+                        Joiners.lessThan(Session::getId)) // Assurez-vous de comparer les IDs pour éviter les auto-conflits
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("Room conflict");
     }
+    
 
     private Constraint teacherConflict(ConstraintFactory constraintFactory) {
-        // A teacher can teach at most one session at the same time.
         return constraintFactory
                 .forEach(Session.class)
                 .join(Session.class,
@@ -47,9 +46,9 @@ public class TimetableConstraintProvider implements ConstraintProvider {
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("Teacher conflict");
     }
+    
 
     private Constraint classConflict(ConstraintFactory constraintFactory) {
-        // A class can have at most one session at the same time.
         return constraintFactory
                 .forEach(Session.class)
                 .join(Session.class,
@@ -59,6 +58,7 @@ public class TimetableConstraintProvider implements ConstraintProvider {
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("Class conflict");
     }
+    
 
     private Constraint teacherRoomStability(ConstraintFactory constraintFactory) {
         // A teacher prefers to teach in the same room.
