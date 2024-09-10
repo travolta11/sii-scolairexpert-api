@@ -2,10 +2,7 @@ package org.ssischoolbackend.solver;
 
 import java.time.Duration;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
-import org.optaplanner.core.api.score.stream.Constraint;
-import org.optaplanner.core.api.score.stream.ConstraintFactory;
-import org.optaplanner.core.api.score.stream.ConstraintProvider;
-import org.optaplanner.core.api.score.stream.Joiners;
+import org.optaplanner.core.api.score.stream.*;
 import org.ssischoolbackend.model.Session;
 
 public class TimetableConstraintProvider implements ConstraintProvider {
@@ -20,7 +17,9 @@ public class TimetableConstraintProvider implements ConstraintProvider {
                 // Soft constraints
                 teacherRoomStability(constraintFactory),
                 teacherTimeEfficiency(constraintFactory),
-                classTimeEfficiency(constraintFactory)
+                classTimeEfficiency(constraintFactory),
+                teacherTeachesOneSubject(constraintFactory),
+                classStudiesOneSubjectPerWeek(constraintFactory)
         };
     }
 
@@ -34,7 +33,25 @@ public class TimetableConstraintProvider implements ConstraintProvider {
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("Room conflict");
     }
-    
+
+    private Constraint teacherTeachesOneSubject(ConstraintFactory constraintFactory) {
+        return constraintFactory
+                .forEach(Session.class)
+                .groupBy(Session::getTeacher, ConstraintCollectors.toSet(Session::getSubject))
+                .filter((teacher, subjectSet) -> subjectSet.size() > 1) // Plus d'un sujet pour le même enseignant
+                .penalize(HardSoftScore.ONE_HARD)
+                .asConstraint("Teacher should teach only one subject");
+    }
+
+
+    private Constraint classStudiesOneSubjectPerWeek(ConstraintFactory constraintFactory) {
+        return constraintFactory
+                .forEach(Session.class)
+                .groupBy(Session::getClass, ConstraintCollectors.toSet(Session::getSubject))
+                .filter((classObj, subjectSet) -> subjectSet.size() > 1) // More than one subject for the same class
+                .penalize(HardSoftScore.ONE_HARD)
+                .asConstraint("Class should study only one subject per week");
+    }
 
     private Constraint teacherConflict(ConstraintFactory constraintFactory) {
         return constraintFactory
