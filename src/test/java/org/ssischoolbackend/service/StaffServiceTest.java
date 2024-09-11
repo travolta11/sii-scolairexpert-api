@@ -37,7 +37,7 @@ public class StaffServiceTest {
                 firstName("rosa").
                 lastName("ella").
                 email("rosa@32gmail.com").
-                gender(Gender.FEMALE).
+                gender(Gender.Female).
                 position(Position.TEACHER).
                 department(Department.HR).
                 build();
@@ -46,7 +46,7 @@ public class StaffServiceTest {
                 firstName("rosa").
                 lastName("ella").
                 email("rosa@32gmail.com").
-                gender(Gender.FEMALE).
+                gender(Gender.Female).
                 position(Position.TEACHER).
                 department(Department.HR).
                 build();

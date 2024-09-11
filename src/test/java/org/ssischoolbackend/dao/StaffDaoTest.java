@@ -46,7 +46,7 @@ public class StaffDaoTest {
 
     @Test
     public void should_create_new_staff_member(){
-        long id = staffDao.createStaffMember(Staff.builder().firstName("rosa").lastName("ella").email("rosa@32gmail.com").gender(Gender.FEMALE).position(Position.TEACHER).department(Department.HR).build());
+        long id = staffDao.createStaffMember(Staff.builder().firstName("rosa").lastName("ella").email("rosa@32gmail.com").gender(Gender.Female).position(Position.TEACHER).department(Department.HR).build());
         assertThat(staffDao.getAllStaffMembers()).hasSize(4);
         assertThat(staffDao.getStaffById(id).get().getFirstName()).isEqualTo("rosa");
     }
@@ -59,7 +59,7 @@ public class StaffDaoTest {
 
     @Test
     public void should_update_staff_member(){
-        Staff staff = Staff.builder().id(1L).firstName("Alice").lastName("Bella").email("alice@32gmail.com").gender(Gender.FEMALE).position(Position.ASSISTANT).department(Department.HR).build();
+        Staff staff = Staff.builder().id(1L).firstName("Alice").lastName("Bella").email("alice@32gmail.com").gender(Gender.Female).position(Position.ASSISTANT).department(Department.HR).build();
         boolean updated = staffDao.updateStaffMember(staff);
         assertThat(updated).isTrue();
         assertThat(staffDao.getStaffById(1L).get().getLastName()).isEqualTo("Bella");

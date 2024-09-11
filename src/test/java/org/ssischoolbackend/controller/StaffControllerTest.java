@@ -45,7 +45,7 @@ public class StaffControllerTest {
                 .cin("12345678")
                 .date_of_birth(new Date(473385600000L))
                 .date_of_start(new Date(1577836800000L))
-                .gender(Gender.FEMALE)
+                .gender(Gender.Female)
                 .position(Position.TEACHER)
                 .department(Department.IT)
                 .build();
