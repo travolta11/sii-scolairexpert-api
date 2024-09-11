@@ -18,6 +18,7 @@ public class Subject {
     private int coefficient;
     private Long teacherId;
 
+    
     public static Subject baseMapper(ResultSet resultSet, int rowNumber) throws SQLException {
         return Subject.builder()
                 .id(resultSet.getLong("id"))

@@ -1,5 +1,6 @@
 package org.ssischoolbackend.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -11,11 +12,13 @@ import java.util.List;
 
 @Repository
 public class RoomDao {
-    private final NamedParameterJdbcTemplate jdbcTemplate;
+    
+    @Autowired
+    NamedParameterJdbcTemplate jdbcTemplate;
 
-    public RoomDao(NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    // public RoomDao(NamedParameterJdbcTemplate jdbcTemplate) {
+    //     this.jdbcTemplate = jdbcTemplate;
+    // }
 
     public Long createRoom(Room room) {
         MapSqlParameterSource params = new MapSqlParameterSource()
