@@ -1,4 +1,4 @@
-version: '1.0'
+
 services:
 
   mysql:
@@ -21,6 +21,18 @@ services:
     networks:
       - ssi-school
 
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:25.0.2
+    ports:
+    - 9090:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    networks:
+      - ssi-school
+    command:
+      - "start-dev"
 
 networks:
   ssi-school:
